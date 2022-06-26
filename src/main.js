@@ -3,6 +3,9 @@ const O = 1;
 const X = 2;
 const DRAW = 3;
 const IMAGES = {[O]: './image/o.png', [X]: './image/x.png'};
+const HUMAN = 0;
+const COM = 1;
+const PLAYERS = {[O]: HUMAN, [X]: COM};
 
 let game = 'play';
 let turn = O;
@@ -16,6 +19,9 @@ function start() {
   for (let i=0; i<board.length; i++) {
     document.getElementById(i).addEventListener('click', onBoardClicked);
   }
+
+  // 手番がコンピュータの場合
+  if (PLAYERS[turn] === COM) moveByCom();
 }
 
 // テーブルセルをクリックした時の処理
@@ -48,6 +54,7 @@ function move(index) {
     // 手番を回す
     turn = turn === O ? X : O;
     document.getElementById('message').textContent = getTurnMessage(turn);
+    if (PLAYERS[turn] === COM) moveByCom();
   }
 }
 
@@ -63,15 +70,24 @@ function judge(turn) {
   }
 
   // 斜めのラインが揃っているか
-  // ↓↓↓ xxxに数字を入れて完成させてください
-  if (board[xxx] === turn && board[xxx] === turn && board[xxx] === turn) return turn;
-  if (board[xxx] === turn && board[xxx] === turn && board[xxx] === turn) return turn;
-  // ↑↑↑
+  if (board[0] === turn && board[4] === turn && board[8] === turn) return turn;
+  if (board[2] === turn && board[4] === turn && board[6] === turn) return turn;
 
   // 全てのマスが埋まっている場合は引き分け
   if (board.filter(e => e === EMPTY).length === 0) return DRAW;
 
   return EMPTY;
+}
+
+// コンピュータによる1手
+function moveByCom() {
+  // 空いている場所にランダムに打つ
+  let indexs = [];
+  for (let i=0; i<board.length; i++) {
+    if (board[i] === EMPTY) indexs.push(i);
+  }
+  const random = Math.floor(Math.random() * indexs.length);
+  move(indexs[random]);
 }
 
 // 手番のメッセージを取得
