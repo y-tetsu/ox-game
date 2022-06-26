@@ -1,0 +1,28 @@
+body {                          /* (全体)                 */
+    text-align: center;         /* テキスト中央寄せ       */
+    color:#C0C0C0;              /* テキストの色           */
+    background-color:#303030;   /* 背景の色               */
+}
+
+p {                             /* (メッセージ)           */
+    font-size: 2rem;            /* フォントサイズ         */
+}
+
+table {                         /* (表全体)               */
+    margin: auto;               /* 周囲の余白 : 自動調整  */
+    color: #E0E0E0;             /* テキストの色           */
+    background: #FFFFFF;        /* 背景色                 */
+    font-size: 1.5rem;          /* フォントサイズ         */
+    border-collapse: collapse;  /* セル間の余白をなくす   */
+}
+
+td {                            /* (表の要素)             */
+    border:5px solid #303030;   /* 枠線 : サイズ 1本線 色 */
+    width: 80px;                /* セルの幅               */
+    height: 80px;               /* セルの高さ             */
+}
+
+img {                           /* (画像)                 */
+    display: block;             /* 中央寄せ               */
+    margin: auto;               /* 周囲の余白 : 自動調整  */
+}
