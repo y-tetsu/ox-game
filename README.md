@@ -1,2 +1,2 @@
-# ox-game
-OXゲーム
+# tictactoe-js
+3目並べ
